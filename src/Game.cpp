@@ -18,6 +18,7 @@ void Game::init() {
 void Game::run() {
 	while (GameWindow::window.isOpen()) {
 		sf::Event event;
+		float dt;
 
 		while (GameWindow::window.pollEvent(event)) {
 			if (event.type == sf::Event::Closed) {

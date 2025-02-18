@@ -7,7 +7,6 @@ class Game {
 private:
 	Scene* currentScene;
 	sf::Clock clock;
-	float dt;
 public:
 	Game();
 	~Game();

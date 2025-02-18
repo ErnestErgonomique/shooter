@@ -1,3 +1,4 @@
+#include "Ennemy.hpp"
 #include "Player.hpp"
 #include "Projectile.hpp"
 #include "Scene.hpp"
@@ -37,6 +38,17 @@ void Player::init() {
 }
 
 void Player::update(float dt) {
+	for (GameObject* go : scene->getObjects()) {
+		Ennemy* ennemy = dynamic_cast<Ennemy*>(go);
+
+		if (ennemy && hitbox->getGlobalBounds().intersects(
+			ennemy->getSprite()->getGlobalBounds()
+		)) {
+			std::cout << "Lost" << std::endl;
+			exit(0);
+		}
+	}
+
 	// Movement
 	sf::Vector2f direction;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) direction.y -= 1.0f;
