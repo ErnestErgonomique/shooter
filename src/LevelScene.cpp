@@ -35,12 +35,14 @@ void LevelScene::destroyProjectiles() {
 	for (std::vector<GameObject*>::iterator it = objects.begin();
 		it != objects.end();
 	) {
-		Projectile* projectile = dynamic_cast<Projectile*>(*it);
+		if (it != objects.end()) {
+			Projectile* projectile = dynamic_cast<Projectile*>(*it);
 
-		if (projectile && projectile->getLifespan() <= 0) {
-			it = objects.erase(it);
-		} else {
-			++it;
+			if (projectile && projectile->getLifespan() <= 0) {
+				it = objects.erase(it);
+			} else {
+				++it;
+			}
 		}
 	}
 }
@@ -49,12 +51,14 @@ void LevelScene::destroyEnnemies() {
 	for (std::vector<GameObject*>::iterator it = objects.begin();
 		it != objects.end();
 	) {
-		Ennemy* ennemy = dynamic_cast<Ennemy*>(*it);
+		if (it != objects.end()) {
+			Ennemy* ennemy = dynamic_cast<Ennemy*>(*it);
 
-		if (ennemy && ennemy->getHealth() <= 0) {
-			it = objects.erase(it);
-		} else {
-			++it;
+			if (ennemy && ennemy->getHealth() <= 0) {
+				it = objects.erase(it);
+			} else {
+				++it;
+			}
 		}
 	}
 }

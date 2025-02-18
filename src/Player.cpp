@@ -2,7 +2,9 @@
 #include "Projectile.hpp"
 #include "Scene.hpp"
 
-Player::Player(Scene* scene): shootCooldown(0) {
+#include <iostream>
+
+Player::Player(Scene* scene): shootCooldown(0.0f) {
 	this->scene = scene;
 	hitbox = new sf::RectangleShape(sf::Vector2f(100.0f, 100.0f));
 }
@@ -11,13 +13,14 @@ Player::~Player() {
 	delete(hitbox);
 }
 
-void Player::shoot() {
+void Player::shoot(float dt) {
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !shootCooldown) {
-		shootCooldown = 25;
+		shootCooldown = 0.2f;
 		scene->addObject(new Projectile(scene));
 
 	}
-	if (shootCooldown > 0) shootCooldown--;
+	if (shootCooldown - dt < 0) shootCooldown = 0;
+	if (shootCooldown > 0) shootCooldown -= dt;
 }
 
 void Player::init() {
@@ -43,5 +46,5 @@ void Player::update(float dt) {
 	direction = normalize(direction);
 	hitbox->move(direction * speed * dt);
 
-	shoot();
+	shoot(dt);
 }

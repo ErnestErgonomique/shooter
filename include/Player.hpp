@@ -5,11 +5,11 @@
 class Player : public GameObject {
 private:
 	float speed;
-	int shootCooldown;
+	float shootCooldown;
 public:
 	Player(Scene* scene);
 	~Player();
-	void shoot();
+	void shoot(float dt);
 	void init() override;
 	void update(float dt) override;
 };

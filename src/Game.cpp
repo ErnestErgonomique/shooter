@@ -10,7 +10,7 @@ Game::~Game() {
 
 void Game::init() {
 	GameWindow::init();
-	GameWindow::window.setFramerateLimit(144);
+	GameWindow::window.setVerticalSyncEnabled(true);
 	currentScene->init();
 	// Create a switch scene method
 }
